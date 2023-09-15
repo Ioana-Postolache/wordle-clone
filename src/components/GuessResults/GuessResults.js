@@ -1,5 +1,6 @@
 import React from 'react';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import GuessedWords from '../GuessedWords';
 
 const EmptyGuess = ({ guessIndex }) => {
   return new Array(5)
@@ -20,27 +21,12 @@ const EmptyGuesses = ({ guessesLength, remainingGuesses }) => {
   });
 };
 
-const GuessedWords = ({ guesses }) => {
-  return guesses.map((guess, index) => {
-    const guessResultsIndex = index;
-    return (
-      <p className='guess' key={index}>
-        {[...guess].map((letter, index) => (
-          <span className='cell' key={`${guessResultsIndex}-${index}`}>
-            {letter}
-          </span>
-        ))}
-      </p>
-    );
-  });
-};
-
-function GuessResults({ guesses }) {
+function GuessResults({ guesses, answer }) {
   const NUMBER_OF_REMAINING_GUESSSES = NUM_OF_GUESSES_ALLOWED - guesses.length;
 
   return (
     <div className='guess-results'>
-      {guesses.length > 0 && <GuessedWords guesses={guesses} />}
+      {guesses.length > 0 && <GuessedWords guesses={guesses} answer={answer} />}
       {!!NUMBER_OF_REMAINING_GUESSSES && (
         <EmptyGuesses
           guessesLength={guesses.length}

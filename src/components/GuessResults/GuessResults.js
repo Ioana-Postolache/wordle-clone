@@ -1,5 +1,5 @@
 import React from 'react';
-import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+
 import GuessedWords from '../GuessedWords';
 
 const EmptyGuess = ({ guessIndex }) => {
@@ -21,16 +21,14 @@ const EmptyGuesses = ({ guessesLength, remainingGuesses }) => {
   });
 };
 
-function GuessResults({ guesses, answer }) {
-  const NUMBER_OF_REMAINING_GUESSSES = NUM_OF_GUESSES_ALLOWED - guesses.length;
-
+function GuessResults({ guesses, answer, remainingGuesses }) {
   return (
     <div className='guess-results'>
       {guesses.length > 0 && <GuessedWords guesses={guesses} answer={answer} />}
-      {!!NUMBER_OF_REMAINING_GUESSSES && (
+      {!!remainingGuesses && (
         <EmptyGuesses
           guessesLength={guesses.length}
-          remainingGuesses={NUMBER_OF_REMAINING_GUESSSES}
+          remainingGuesses={remainingGuesses}
         />
       )}
     </div>

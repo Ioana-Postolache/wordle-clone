@@ -23,3 +23,22 @@ export function checkGuess(guess, answer) {
     };
   });
 }
+
+export function getGuessResults(guess, answer) {
+  if (!guess) {
+    return false;
+  }
+
+  const guessChars = guess.toUpperCase().split('');
+  const answerChars = answer.split('');
+  let correct = true;
+
+  guessChars.forEach((guessChar, index) => {
+    const answerChar = answerChars[index];
+
+    if (guessChar !== answerChar) {
+      correct = false;
+    }
+  });
+  return correct;
+}

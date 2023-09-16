@@ -4,12 +4,12 @@ import { checkGuess } from '../../game-helpers';
 function GuessedWords({ guesses, answer }) {
   return guesses.map((guess, index) => {
     const guessResultsIndex = index;
-    const checkGuessResult = checkGuess(guess, answer);
+    const isGuessCorrect = checkGuess(guess, answer);
 
     return (
       <p className='guess' key={index}>
         {[...guess].map((letter, index) => {
-          const className = `cell ${checkGuessResult[index].status}`;
+          const className = `cell ${isGuessCorrect[index].status}`;
           return (
             <span key={`${guessResultsIndex}-${index}`} className={className}>
               {letter}
